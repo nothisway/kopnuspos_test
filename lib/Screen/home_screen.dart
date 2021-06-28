@@ -15,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = ScrollController();
   double offset = 0;
+  String country = "ID";
+  String selectedCountry = "Indonesia";
 
   @override
   void initState() {
@@ -70,16 +72,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       isExpanded: true,
                       underline: SizedBox(),
                       icon: SvgPicture.asset("assets/icons/dropdown.svg"),
-                      value: "Indonesia",
+                      value: selectedCountry,
                       items: [
                         'Indonesia',
+                        'USA',
+                        'Japan'
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        if (value == "Indonesia"){
+                          setState(() {
+                            country = "ID";
+                            selectedCountry = "Indonesia";
+                          });
+                        } else if (value == "USA") {
+                          setState(() {
+                            country = "USA";
+                            selectedCountry = "USA";
+                          });
+                        } else {
+                          setState(() {
+                            country = "JP";
+                            selectedCountry = "Japan";
+                          });
+                        }
+                      },
                     ),
                   ),
                 ],
@@ -133,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     child: FutureBuilder(
-                      future: Services().getData(),
+                      future: Services().getData(country),
                       builder: (context, snapshot){
                         if (snapshot.hasData){
                           return Column(

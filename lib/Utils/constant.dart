@@ -26,4 +26,4 @@ const kTitleTextstyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const ENDPOINT = "https://covid19.mathdro.id/api/countries/ID";
+const ENDPOINT = "https://covid19.mathdro.id/api/countries/";

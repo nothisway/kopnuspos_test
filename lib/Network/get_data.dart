@@ -4,8 +4,8 @@ import 'package:kopnuspos_test/Utils/constant.dart';
 
 class Services {
 
-  Future<CovidCaseResponse> getData() async {
-    var url = Uri.parse(ENDPOINT);
+  Future<CovidCaseResponse> getData(String country) async {
+    var url = Uri.parse(ENDPOINT+country);
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
